@@ -1,2 +1,0 @@
-"use strict";(self["webpackChunkcarspottingapp"]=self["webpackChunkcarspottingapp"]||[]).push([[443],{7381:function(n,t,a){a.r(t),a.d(t,{default:function(){return f}});var r=a(3396);const s={class:"about"},u=(0,r._)("h1",null,"This is an about page",-1),c=[u];function e(n,t){return(0,r.wg)(),(0,r.iD)("div",s,c)}var i=a(89);const p={},o=(0,i.Z)(p,[["render",e]]);var f=o}}]);
-//# sourceMappingURL=about.7cb10f39.js.map
