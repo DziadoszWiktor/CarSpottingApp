@@ -108,12 +108,7 @@ export default {
         },
         
         fetchComments(post_id){
-        //if (document.getElementById('comments'+post_id).innerHTML !=""){
-        //  document.getElementById('comments'+post_id).innerHTML=""
-        //}
-        //else{
-        //  console.log('Comment section empty!')
-        //}
+
         this.comments = []
         db.collection("comments").get().then(docs => {
           docs.forEach(doc => {
@@ -125,8 +120,6 @@ export default {
                 comment: doc.data().comment,
               }
                this.comments.push(Comment)
-               //console.log(Post)
-               //console.log(doc.data())
              }
           })
           console.log(post_id)
@@ -165,7 +158,7 @@ export default {
       var user = auth.currentUser;
       var name, output,  username;
       output = document.getElementById("txtName");
-      //console.log(user.email);
+
       if (user != null) {
         name = user.email;
         username = name.substring(0, name.indexOf('@'));
