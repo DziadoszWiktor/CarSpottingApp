@@ -1,11 +1,24 @@
-# **Car Spotting App**
+# csa-auth
 
-### Aplikacja PWA realizowana w ramach projektu zaliczeniowego przedmiotu "Progamowanie Systemów Mobilnych" 
-<br>
+## Project setup
+```
+npm install
+```
 
-<p align="center">
-  <img src="./UML%20and%20Prototype/img/logoo.png"/>
-</p>
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
 
+### Compiles and minifies for production
+```
+npm run build
+```
 
+### Lints and fixes files
+```
+npm run lint
+```
 
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
