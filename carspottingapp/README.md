@@ -1,4 +1,9 @@
-# carspottingapp
+# **carspottingapp**
+
+## Commit and deploy
+```
+./deploy.sh *commit comment*
+```
 
 ## Project setup
 ```
