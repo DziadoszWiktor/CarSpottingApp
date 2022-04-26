@@ -28,6 +28,14 @@ const routes = [
     }
   },
   {
+    path: '/profile',
+    name: 'Profile',
+    component: () => import('../views/ProfileView.vue'),
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
     path: '/welcome',
     name: 'Welcome',
     component: () => import('../views/WelcomeView.vue')
