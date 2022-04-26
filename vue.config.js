@@ -2,7 +2,7 @@ const { defineConfig } = require('@vue/cli-service')
     module.exports = defineConfig({
         transpileDependencies: true,
         publicPath: process.env.NODE_ENV === 'production'
-            ? '/gh-pages-vue-deployment/'
+            ? '/CarSpottingApp/'
             : '/',
         pwa: {
             name: 'gh-pages Vue PWA App deployment ',
