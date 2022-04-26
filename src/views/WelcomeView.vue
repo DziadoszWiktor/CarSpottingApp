@@ -16,27 +16,27 @@ import router from '../router';
 export default {
     methods: {
     googleLogin(){
-      console.log('google login');
+      window.console.log('google login');
       const provider = new GoogleAuthProvider();
       signInWithPopup(auth, provider)
         .then(result => {
-          console.log(result.user);
+          window.console.log(result.user);
           router.push('/');
         })
         .catch(error => {
-          console.log(error);
+          window.console.log(error);
         });
     },
     facebookLogin(){
-      console.log('facebook login');
+      window.console.log('facebook login');
       const provider = new FacebookAuthProvider();
       signInWithPopup(auth, provider)
         .then(result => {
-          console.log(result.user);
+          window.console.log(result.user);
           router.push('/');
         })
         .catch(error => {
-          console.log(error);
+          window.console.log(error);
         });
     }
   }

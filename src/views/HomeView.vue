@@ -80,7 +80,7 @@ export default {
         }
 
         db.collection('liked').add(likedPost).then(() => {
-          console.log('Post liked!')
+          window.console.log('Post liked!')
         })
         router.push('/liked')
         },
@@ -101,7 +101,7 @@ export default {
           }
 
           db.collection('comments').add(newComment).then(() => {
-            console.log('Post commetned!')
+            window.console.log('Post commetned!')
           })
           document.getElementById('comment'+post_id).value = ""
           router.push('/')
@@ -122,7 +122,7 @@ export default {
                this.comments.push(Comment)
              }
           })
-          console.log(post_id)
+          window.console.log(post_id)
 
           document.getElementById('comments'+post_id).style.display = "block";
         });
@@ -141,7 +141,7 @@ export default {
           // lat: 44.4001,
           // lng: -79.666
         };
-        console.log(place)
+        window.console.log(place)
         map = new google.maps.Map(document.getElementById("map"), {
           zoom: 15,
           center: place
