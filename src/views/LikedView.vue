@@ -53,7 +53,7 @@ import router from '../router'
               //console.log(doc.data().post_id)
               //console.log(id)
               db.collection("liked").doc(delPost).delete().then(() => {
-                console.log("Post Disliked!");
+                window.console.log("Post Disliked!");
                 router.push('/liked')
 
               })

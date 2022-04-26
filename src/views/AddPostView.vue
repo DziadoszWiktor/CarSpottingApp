@@ -61,11 +61,11 @@ export default {
     onMounted(async () => {
       await loader.load()
       while (currPos.value.lat == 50 && currPos.value.lng == 19 ) {
-        console.log("Awaiting Coords")
+        window.console.log("Awaiting Coords")
         await sleep(500)
       }
-      console.log("Centering Lat: " + currPos.value.lat)
-      console.log("Centering Lng: " + currPos.value.lng)
+      window.console.log("Centering Lat: " + currPos.value.lat)
+      window.console.log("Centering Lng: " + currPos.value.lng)
       const map = new google.maps.Map(mapDiv.value, {
         center: currPos.value,
         zoom: 18
@@ -108,7 +108,7 @@ export default {
       }
       
       db.collection('posts').add(newPost).then(() => {
-        console.log('Post added!')
+        window.console.log('Post added!')
       })
       router.push('/')
     }
