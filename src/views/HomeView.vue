@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1 id="test-home">Home Page</h1>
+    <h1 id="test-home">Home Page heh</h1>
     <h2 id="txtName"></h2>
     <button @click="$router.push('post')" >Post</button>
     
