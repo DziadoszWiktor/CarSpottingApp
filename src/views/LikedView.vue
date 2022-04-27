@@ -6,15 +6,21 @@
       <div  class="border border-primary p-5" style="margin-top:20px;background-color:#a9c2f7;margin-left:10%;margin-right:10%;border-radius:15px;">
         <h2>{{ post.username }}</h2>
         <h3>{{ post.description}}</h3>
-      <img :id="'dislikeBtn'+post.id" src="img/heart-filled.png" alt="Heart button" width="50" height="50" @click="deleteData(post.id)">
+        <img :id="'pictureFromStorage4'+post.id" class="img-fluid" src="----"><br>
+      <img :id="'dislikeBtn'+post.id" src="img/heart-filled.png" alt="Heart button" width="50" height="50" @click="deleteData(post.id)" style="margin-top:25px;">
       </div>
     </div>
   </div>
 </template>
 <script>
+/* eslint-disable no-undef */
+/* eslint-disable */
 import { auth } from '../firebase'
 import { db } from '../firebase'
 import router from '../router'
+import { ref as reff } from '../firebase';
+import { storage } from '../firebase';
+import { getDownloadURL } from '../firebase';
 
   export default {
     name: "LikedView",
@@ -33,6 +39,7 @@ import router from '../router'
               db.collection("posts").doc(doc.data().post_id).get().then(doc => {
                 const Post = {
                   id: doc.id,
+                  post_name: doc.data().post_name,
                   username: doc.data().username,
                   description: doc.data().description,
                   location: doc.data().location,
@@ -40,6 +47,25 @@ import router from '../router'
                 this.liked.push(Post)
                 //console.log(Post)
                 //console.log(doc.data())
+                const username = Post.username;
+                const name = Post.post_name;
+                const desc = Post.description;
+                const id = username+"-"+name+"-"+desc;
+                const post_id = Post.id;
+                console.log(id,post_id);
+                const refImage = reff(storage, 'cars/'+id+'.jpg')
+                getDownloadURL(refImage).then((url)=>{
+                  const xhr = new XMLHttpRequest();
+                  xhr.responseType = 'data_url';
+                  xhr.onload = (event) => {
+                    const imgurl = xhr.response;
+                  }
+                  xhr.open('GET', url)
+                  xhr.send();
+                  //this.sleep(500);
+                  const receivedimg = document.getElementById("pictureFromStorage4"+post_id).src = url;
+                  //receivedimg.setAttribute('src',url);
+                })
               })
             }
           })
@@ -55,7 +81,6 @@ import router from '../router'
               db.collection("liked").doc(delPost).delete().then(() => {
                 window.console.log("Post Disliked!");
                 router.push('/liked')
-
               })
             }
           })
