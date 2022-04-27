@@ -23,7 +23,7 @@
             capture="environment"
           />
         </label><br>
-        <img id="pictureFromCamera" width="800" height="500"/>
+        <img id="pictureFromCamera" class="img-fluid"/>
         <br>
         <div>
           <h1>Your location: </h1>
