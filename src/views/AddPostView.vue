@@ -120,6 +120,10 @@ export default {
       
     },
   methods: { 
+    vibrate(){
+      navigator.vibrate(500);
+      console.log("I vibrated!");
+    },
     submit() {
             const desc = document.getElementById('desc').value
             const path = '';
@@ -140,6 +144,7 @@ export default {
             
             db.collection('posts').add(newPost).then(() => {
               window.console.log('Post added!')
+              this.vibrate()
             })
             router.push('/')
     },
