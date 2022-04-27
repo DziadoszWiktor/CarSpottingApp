@@ -12,9 +12,10 @@
         </div>
 
         <label for="cameraFileInput">
-          <span class="btn btn-primary">Open camera</span>
+          <span class="btn btn-primary">Open Photo</span>
           <!-- The hidden file `input` for opening the native camera  type="file"  -->
           <input
+            @change="openCamera"
             style="display:none"
             id="cameraFileInput"
             type="file"
@@ -34,7 +35,7 @@
         <div>
           <h3 id="location"></h3>
         </div>
-        <button class="btn mt-4" style="background-color:#7EA3F1;color:black;height:50px;width:150px;" @click = "openCamera" type="button" id="add">Submit</button>
+        <button class="btn mt-4" style="background-color:#7EA3F1;color:black;height:50px;width:150px;" @click="submit" type="button" id="add">Submit</button>
       </form>
     </div>
   </div>
@@ -97,6 +98,13 @@ export default {
     
     return{ currPos, mapDiv }
   },
+  data() {
+    return {
+      selectedFile64: null,
+      imageBase64Stringsep: null,
+      pathImage: null,
+    }
+  },
   mounted() {
       /*
       var user = auth.currentUser;
@@ -113,8 +121,8 @@ export default {
     },
   methods: { 
     submit() {
-      const desc = document.getElementById('desc').value
-            const path = ''
+            const desc = document.getElementById('desc').value
+            const path = '';
             const name = document.getElementById('name').value
             const uid = auth.currentUser.uid
             const location = this.currPos.lat.toFixed(4) + ', ' + this.currPos.lng.toFixed(4)
@@ -128,13 +136,42 @@ export default {
               username: username,
               path:path
             }
+            console.log(this.id);
             
             db.collection('posts').add(newPost).then(() => {
               window.console.log('Post added!')
             })
             router.push('/')
     },
-    openCamera () {
+    openCamera () {         
+        var file = document.querySelector('input[type=file]')['files'][0];
+        var reader = new FileReader();
+        console.log("reader init");
+        reader.onload = function () {
+            this.selectedFile64 = reader.result;
+            this.imageBase64Stringsep = this.selectedFile64;
+            //console.log(this.imageBase64Stringsep);
+            console.log(this.selectedFile64);
+            document.getElementById("pictureFromCamera").setAttribute("src",this.selectedFile64)
+            //var uuid = require("uuid");
+            //var id = uuid.v4();
+            const desc = document.getElementById('desc').value
+            const email = auth.currentUser.email
+            const username = email.substring(0, email.indexOf('@'));
+            const name = document.getElementById('name').value
+            const id = username+"-"+name+"-"+desc
+            console.log(id);
+            //console.log(id);
+            
+            this.pathImage = 'cars/'+id+'.jpg';
+            //db.collection('posts').where("path", "==", "").update({path:this.pathImage});
+            const refImg = reff(storage, this.pathImage);
+            uploadString(refImg,this.selectedFile64,'data_url').then((snapshot) =>{
+              console.log("The photo has been sent in path cars/"+id+".jpg");``
+            });
+        }
+        reader.readAsDataURL(file);
+        /*
         this.submit();
         document
         .getElementById("cameraFileInput")
@@ -159,7 +196,7 @@ export default {
             })
           }); 
           FR.readAsDataURL( this.files[0] );
-        });
+        });*/
     },
   }
 };

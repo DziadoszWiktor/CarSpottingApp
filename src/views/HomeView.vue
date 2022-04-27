@@ -11,7 +11,7 @@
         <h3>{{ post.description }}</h3>
         <h3 @click="initMap(post.location)">{{ post.location }}</h3>
 
-        
+        <img :id="'pictureFromStorage2'+post.id" width="500" height="500" src="----"><br>
 
         <input style="height:50px;width:60%; margin:10px;border-radius:5px;padding:5px;" type="text" :id="'comment'+post.id" placeholder="Write a comment...">
         <button class="btn" style="background-color:#7EA3F1;color:black;height:50px;width:150px;" @click="commentPost(post.id, post.uid, post.post_name)" post.type="button">Comment</button><br>
@@ -32,9 +32,13 @@
 </template>
 <script>
 /* eslint-disable no-undef */
+/* eslint-disable */
 import { auth } from '../firebase'
 import { db } from '../firebase'
 import router from '../router'
+import { ref as reff } from '../firebase';
+import { storage } from '../firebase';
+import { getDownloadURL } from '../firebase';
 
 
 export default {
@@ -63,6 +67,26 @@ export default {
               uid: doc.data().uid
             }
             this.posts.push(Post)
+            const username = Post.username;
+            const name = Post.post_name;
+            const desc = Post.description;
+            const id = username+"-"+name+"-"+desc;
+            const post_id = Post.id;
+            console.log(id,post_id);
+            const refImage = reff(storage, 'cars/'+id+'.jpg')
+            getDownloadURL(refImage).then((url)=>{
+              const xhr = new XMLHttpRequest();
+              xhr.responseType = 'data_url';
+              xhr.onload = (event) => {
+                const imgurl = xhr.response;
+              }
+              xhr.open('GET', url)
+              xhr.send();
+              this.sleep(500);
+              const receivedimg = document.getElementById("pictureFromStorage2"+post_id).src = url;
+              //receivedimg.setAttribute('src',url);
+            })
+
             //console.log(Post)
 
             //div.value = "hehe"
@@ -170,6 +194,9 @@ export default {
         });
         document.getElementById("map").style.display = "block";
         document.getElementById("map").scrollIntoView({behavior: 'smooth'});
+      },
+      sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
       }
     },
     mounted() {
