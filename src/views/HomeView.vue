@@ -1,31 +1,31 @@
 <template>
-  <div class="home">
-    <h1 id="test-home">Home Page heh</h1>
-    <h2 id="txtName" style="margin-top:100px"></h2>
-    <button @click="$router.push('post')" >Post</button>
+  <div class="home mb-4">
+    <h1 style="margin-top:120px" id="test-home">Home Page</h1>
+    <h2 id="txtName" ></h2>
+    <button class="btn" style="background-color:#7EA3F1;color:black;height:50px;width:150px;" @click="$router.push('post')" >Post</button>
     
     <div v-for="(post, index) in posts" :key="index">
-      <h1>---------------</h1>
-      <h2>{{ post.post_name }} by: {{ post.username }}</h2>
-      <h3>{{ post.description }}</h3>
-      <h3 @click="initMap(post.location)">{{ post.location }}</h3>
-      
-      <button @click="likePost(post.id)" post.type="button">Like</button>
-      
-      <input type="text" :id="'comment'+post.id" placeholder="Write a comment...">
-      <button @click="commentPost(post.id, post.uid, post.post_name)" post.type="button">Comment</button><br>
-      <a  @click="fetchComments(post.id)">Show comments</a>
-      
-      <div :id="'comments'+post.id" style="display:none">
-        <button type="button" @click="closeComments(post.id)">x</button>
-        <div v-for="(comment, index) in comments" :key="index" >
-          <h1>---------------</h1>
-          <h3>{{ comment.username }}: {{ comment.comment }}</h3>
+      <div  class="border border-primary p-5" style="margin-top:20px;background-color:#a9c2f7;margin-left:10%;margin-right:10%;border-radius:15px;">
+        <img :id="'heart'+post.id" src="img/heart-empty.png" alt="Heart button" width="50" height="50" @click="likePost(post.id)" style="float:right"><br>
+        <h2>{{ post.post_name }} by: {{ post.username }}</h2>
+        <h3>{{ post.description }}</h3>
+        <h3 @click="initMap(post.location)">{{ post.location }}</h3>
+
+        
+
+        <input style="height:50px;width:60%; margin:10px;border-radius:5px;padding:5px;" type="text" :id="'comment'+post.id" placeholder="Write a comment...">
+        <button class="btn" style="background-color:#7EA3F1;color:black;height:50px;width:150px;" @click="commentPost(post.id, post.uid, post.post_name)" post.type="button">Comment</button><br>
+        <a :id="'showComments'+post.id" @click="fetchComments(post.id)">Show comments</a>
+
+        <div :id="'comments'+post.id" style="display:none;margin-top:20px">
+          <img src="img/delete.png" alt="X button" width="50" height="50" @click="closeComments(post.id)" style="float:right">
+          <div class="my-4" v-for="(comment, index) in comments" :key="index" >
+            <h3>{{ comment.username }}: {{ comment.comment }}</h3>
+          </div>
         </div>
       </div>
-      
-      </div>
-      <div id="map" style="display:none; witdth: 100%; height: 30vh; margin-left:30%; margin-right:30%; margin-top:20px; margin-bottom:20px"></div>
+    </div>
+      <div id="map" style="display:none; witdth: 100%; height: 40vh; margin-left:10%; margin-right:10%; margin-top:20px; margin-bottom:20px; border-radius:15px"></div>
   </div>
 
   
@@ -68,7 +68,14 @@ export default {
             //div.value = "hehe"
             //div.setAttribute("value", "hehe")
             //console.log(doc.data())
+            //console.log(doc.data().uid)
+            //console.log(doc.id)
+
           })
+          // JEST 7.29 I NIE MAM POMYSŁU JAK UGRYŹĆ TEN WSPANIAY POMYSŁ
+         //if(db.collection("liked").where("uid", "==", doc.data().uid) && db.collection("liked").where("post_id", "==", doc.id)){
+         //    document.getElementById("heart"+doc.id).src = "img/heart-full.png"
+         //    }
         });
       },
       //Like
@@ -82,29 +89,34 @@ export default {
         db.collection('liked').add(likedPost).then(() => {
           window.console.log('Post liked!')
         })
-        router.push('/liked')
+        document.getElementById("heart"+post_id).src = "img/heart-filled.png"
+        //router.push('/liked')
         },
         //Comments
         commentPost(post_id,posters_uid,post_name) {
-          const uid = auth.currentUser.uid
-          const user = auth.currentUser
-          const name = user.email;
-          const username = name.substring(0, name.indexOf('@'));
-          const comment = document.getElementById('comment'+post_id).value
-          const newComment = {
-            uid: uid,
-            posters_uid: posters_uid,
-            comment: comment,
-            post_id: post_id,
-            username: username,
-            post_name: post_name
-          }
+          if (document.getElementById('comment'+post_id).value != "") {
+            const uid = auth.currentUser.uid
+            const user = auth.currentUser
+            const name = user.email;
+            const username = name.substring(0, name.indexOf('@'));
+            const comment = document.getElementById('comment'+post_id).value
+            const newComment = {
+              uid: uid,
+              posters_uid: posters_uid,
+              comment: comment,
+              post_id: post_id,
+              username: username,
+              post_name: post_name
+            }
 
-          db.collection('comments').add(newComment).then(() => {
-            window.console.log('Post commetned!')
-          })
-          document.getElementById('comment'+post_id).value = ""
-          router.push('/')
+            db.collection('comments').add(newComment).then(() => {
+              window.console.log('Post commetned!')
+            })
+            document.getElementById('comment'+post_id).value = ""
+            router.push('/')
+          }else{
+            alert("Cannot post an empty comment!")
+          }
         },
         
         fetchComments(post_id){
@@ -121,14 +133,20 @@ export default {
               }
                this.comments.push(Comment)
              }
-          })
-          window.console.log(post_id)
 
-          document.getElementById('comments'+post_id).style.display = "block";
+          })
+          window.console.log(post_id);
+          if(this.comments.length == 0){
+                alert("No comments yet!")
+             }else{
+                document.getElementById('showComments'+post_id).style.display = "none"
+                document.getElementById('comments'+post_id).style.display = "block"
+             }
         });
       },
       closeComments(post_id) {
         document.getElementById('comments'+post_id).style.display = "none";
+        document.getElementById('showComments'+post_id).style.display = "block";
       },
        //Mapa
       initMap(loc) {

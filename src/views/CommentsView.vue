@@ -1,11 +1,12 @@
 <template>
-  <div class="comments">
-    <h1>Posts comments page</h1>
-    <h2 id="txtName"></h2>
+  <div class="comments mb-4">
+    <h1 style="margin-top:120px">Posts comments page</h1>
+    <h2 id="txtName" ></h2>
     <div v-for="(comment, index) in comments" :key="index">
-      <h1>---------------</h1>
-      <h2>{{ comment.username }} commented on {{ comment.post_name }}</h2>
-      <h3>{{ comment.comment}}</h3>
+      <div  class="border border-primary p-5" style="margin-top:20px;background-color:#a9c2f7;margin-left:10%;margin-right:10%;border-radius:15px;">
+        <h2>{{ comment.username }} commented on {{ comment.post_name }}</h2>
+        <h3>{{ comment.comment}}</h3>
+      </div>
     </div>
   </div>
 </template>
@@ -50,7 +51,7 @@ import { db } from '../firebase'
       if (user != null) {
         name = user.email;
         username = name.substring(0, name.indexOf('@'));
-        output.innerHTML= "Welcome " + username;
+        output.innerHTML= "Welcome " + username + ", here are all the commetns you've received!";
       }
       this.fetchComments()
     }

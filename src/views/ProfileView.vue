@@ -1,12 +1,16 @@
 <template>
-  <div class="profile">
+  <div class="profile mb-4">
+    <div style="text-align:center; margin-top:120px;padding:20%;height:500px;background-color:#000000;color:pink">
+    <h1>W sumie nie wiem co tu damy <br>\o/</h1>
+    </div>
     <h1>Profile page</h1>
     <h2 id="txtName"></h2>
     <div v-for="(post, index) in posts" :key="index">
-      <h1>---------------</h1>
-      <h2>{{ post.post_name }} by: {{ post.username }}</h2>
-      <h3>{{ post.description }}</h3>
-      <h3 @click="initMap(post.location)">{{ post.location }}</h3>
+      <div class="border border-primary p-5" style="margin-top:20px;background-color:#a9c2f7;margin-left:10%;margin-right:10%;border-radius:15px;">
+        <h2>{{ post.post_name }} by: {{ post.username }}</h2>
+        <h3>{{ post.description }}</h3>
+        <h3>{{ post.location }}</h3>
+      </div>
     </div>
   </div>
 </template>

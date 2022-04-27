@@ -1,4 +1,10 @@
 <template>
+  <div id='nav' v-if="!$store.state.user">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light" style="background-color: #7EA3F1;">
+      <router-link class="navbar-brand" to="/"><img src="img/header-transparent2-small.png" class="d-inline-block align-top" alt=""></router-link>
+      
+    </nav>
+  </div>
   <div id='nav' v-if="$store.state.user">
     <nav class="navbar navbar-expand-lg fixed-top navbar-light" style="background-color: #7EA3F1;">
       <router-link class="navbar-brand" to="/"><img src="img/header-transparent2-small.png" class="d-inline-block align-top" alt=""></router-link>
@@ -12,7 +18,7 @@
           <router-link class="nav-item nav-link" to="/comments">Comments</router-link>
           <router-link class="nav-item nav-link" to="/profile">Profile Page</router-link>
           <router-link class="nav-item nav-link" to="/camera">Camera</router-link>
-          <button class="btn btn-primary" style ="margin-left:10px"  @click="$store.dispatch('logout')">Logout</button>
+          <button class="btn btn-primary" style ="margin-left:10px;"  @click="$store.dispatch('logout')">Logout</button>
         </div>
       </div>
     </nav>
@@ -78,4 +84,5 @@ nav a {
 nav a.router-link-exact-active {
   color: #42b983;
 }
+
 </style>

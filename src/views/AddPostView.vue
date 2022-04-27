@@ -1,14 +1,14 @@
 <template>
-  <div class="post">
-    <h1>Add a new post</h1>
-    <h2 id="txtName"></h2>
+  <div class="post mb-4">
+    <h1 style="margin-top:120px">Add a new post</h1>
+    <h2 id="txtName" ></h2>
     <div>
     <form id="form">
         <div>
           <label for="name" class="form-label">Post name</label><br>
-          <input type="text" name="name" id="name" placeholder="Give your post a name"><br>
+          <input style="height:50px;width:50%; margin:10px;border-radius:5px;padding:5px;" type="text" name="name" id="name" placeholder="Give your post a name"><br>
           <label for="desc" class="form-label">Description</label><br>
-          <textarea name="desc" id="desc" placeholder="Add a descreption"></textarea><br>
+          <textarea style="height:100px;width:50%; margin:10px;border-radius:5px;padding:5px;" name="desc" id="desc" placeholder="Add a descreption"></textarea><br>
         </div>
 
         <label for="cameraFileInput">
@@ -28,13 +28,13 @@
           <h1>Your location: </h1>
           <p>{{ currPos.lat.toFixed(2) }} latitude, {{ currPos.lng.toFixed(2) }} longitude</p>
         </div>
-        <div ref="mapDiv" style="witdth: 100%; height: 40vh; margin-left:20%; margin-right:20%;">
+        <div ref="mapDiv" style=" witdth: 100%; height: 40vh; margin-left:10%; margin-right:10%; margin-top:20px; margin-bottom:20px; border-radius:15px">
 
         </div>
         <div>
           <h3 id="location"></h3>
         </div>
-        <button @click = "openCamera" type="button" id="add">Submit</button>
+        <button class="btn mt-4" style="background-color:#7EA3F1;color:black;height:50px;width:150px;" @click = "openCamera" type="button" id="add">Submit</button>
       </form>
     </div>
   </div>

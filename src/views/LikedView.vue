@@ -1,13 +1,13 @@
 <template>
-  <div class="liked">
-    <h1>Liked posts page</h1>
-    <h2 id="txtName"></h2>
+  <div class="liked mb-4">
+    <h1 style="margin-top:120px">Liked posts page</h1>
+    <h2 id="txtName" ></h2>
     <div v-for="(post, index) in liked" :key="index">
-      <h1>---------------</h1>
-      <h2>{{ post.username }}</h2>
-      <h3>{{ post.description}}</h3>
-      <h3>{{ post.location}}</h3>
-      <button @click="deleteData(post.id)" post.type="button">Dislike</button>
+      <div  class="border border-primary p-5" style="margin-top:20px;background-color:#a9c2f7;margin-left:10%;margin-right:10%;border-radius:15px;">
+        <h2>{{ post.username }}</h2>
+        <h3>{{ post.description}}</h3>
+      <img :id="'dislikeBtn'+post.id" src="img/heart-filled.png" alt="Heart button" width="50" height="50" @click="deleteData(post.id)">
+      </div>
     </div>
   </div>
 </template>
@@ -60,6 +60,7 @@ import router from '../router'
             }
           })
         })
+        document.getElementById("dislikeBtn"+id).src = "img/broken-heart.png"
       }
     },
     mounted() {
@@ -70,7 +71,7 @@ import router from '../router'
       if (user != null) {
         name = user.email;
         username = name.substring(0, name.indexOf('@'));
-        output.innerHTML= "Welcome " + username;
+        output.innerHTML= "Welcome " + username + ", here you'll find post liked by you!";
       }
       this.fetchData()
     }
