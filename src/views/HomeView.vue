@@ -85,12 +85,16 @@ export default {
           uid: uid,
           post_id: post_id
         }
-
+        
         db.collection('liked').add(likedPost).then(() => {
-          window.console.log('Post liked!')
-        })
+        window.console.log('Post liked!')
         document.getElementById("heart"+post_id).src = "img/heart-filled.png"
-        //router.push('/liked')
+          })
+          
+          
+          
+          //router.push('/liked')
+        
         },
         //Comments
         commentPost(post_id,posters_uid,post_name) {

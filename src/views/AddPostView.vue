@@ -34,7 +34,7 @@
         <div>
           <h3 id="location"></h3>
         </div>
-        <button class="btn mt-4" style="background-color:#7EA3F1;color:black;height:50px;width:150px;" @click = "openCamera" type="button" id="add">Submit</button>
+        <button class="btn mt-4" style="background-color:#7EA3F1;color:black;height:50px;width:150px;" @click = "submit" type="button" id="add">Submit</button>
       </form>
     </div>
   </div>
@@ -112,6 +112,10 @@ export default {
       
     },
   methods: { 
+    vibrate(){
+      navigator.vibrate(500);
+      console.log("I vibrated!");
+    },
     submit() {
       const desc = document.getElementById('desc').value
             const path = ''
@@ -131,6 +135,7 @@ export default {
             
             db.collection('posts').add(newPost).then(() => {
               window.console.log('Post added!')
+              this.vibrate()
             })
             router.push('/')
     },
