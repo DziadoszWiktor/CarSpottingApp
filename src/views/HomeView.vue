@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <h1 id="test-home">Home Page heh</h1>
-    <h2 id="txtName"></h2>
+    <h2 id="txtName" style="margin-top:100px"></h2>
     <button @click="$router.push('post')" >Post</button>
     
     <div v-for="(post, index) in posts" :key="index">

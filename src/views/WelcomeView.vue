@@ -1,11 +1,10 @@
 <template>
-  <div class="welcome">
-    <h1 id="test-home">Welocme to CarSpotting App</h1><br>
-    <button @click="$router.push('login')">Log In</button><br><br>
-    <button @click="$router.push('register')">Create Account</button><br><br>
-
-    <button @click="googleLogin">Google</button>
-    <button @click="facebookLogin">Facebook</button>
+  <div class="welcome border border-primary p-5" style="margin-top:200px;background-color:#a9c2f7;margin-left:10%;margin-right:10%;border-radius:15px;">
+    <h1 id="test-home"><b>Welcome to CarSpotting App</b></h1><br>
+    <button class="btn" style="background-color:#7EA3F1;color:black;height:50px;width:150px;" @click="$router.push('login')">Log In</button><br><br>
+    <button class="btn" style="background-color:#7EA3F1;color:black;height:50px;width:200px;" @click="googleLogin">Log In with Google</button><br><br>
+    <p>or...</p>
+    <button class="btn" style="background-color:#7EA3F1;color:black;height:50px;width:150px;" @click="$router.push('register')">Create Account</button><br><br>
   </div>
 </template>
 <script>
@@ -43,3 +42,8 @@ export default {
 }
 </script>
 
+<style>
+li {
+  background-color:#a9c2f7;
+}
+</style>

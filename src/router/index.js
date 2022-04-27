@@ -57,6 +57,14 @@ const routes = [
     meta: {
       requiresAuth: true
     }
+  },
+  {
+    path: '/camera',
+    name: 'Camera',
+    component: () => import('../views/CameraView.vue'),
+    meta: {
+      requiresAuth: true
+    }
   }
 ]
 

@@ -1,0 +1,156 @@
+body.profile { 
+    padding-top: 65px;
+    background: #ffffff; 
+}
+
+
+
+
+/*login*/
+.header {
+    width: 100%;
+  }
+  
+.header-icon {
+    width: 30%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.divider:after,
+.divider:before {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #eee;
+}
+
+/*login-register-finish continue btn*/
+.btn#btn-cont {
+    width: 20%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/*navbar*/
+.navbar-brand {
+    width:170px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+.navbar-brand img {
+    height: 70%;
+    width: 70%;
+   
+}
+
+
+
+/*posts*/
+body.main-page {
+    font-family: Arial;
+    padding: 20px;
+    background: #ffffff;
+    padding-top: 120px; 
+
+  }
+  
+  
+  /* Create two unequal columns that floats next to each other */
+  /* Left column */
+  .leftcolumn {
+    width: 100%;
+    padding: 0;
+  }
+  
+
+  /* Fake image */
+  .img-post {
+    height: 100%; 
+    width: 100%;
+    padding: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* Add a card effect for articles */
+  .card {
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+
+/*profile bg chyba*/
+  .gradient-custom-2 {
+    background: #ffffff;
+} 
+ 
+/*heart icon like
+.icon {
+    background: url('images/heart-empty.png');
+    height: 20px;
+    width: 20px;
+    display: block;
+}
+
+
+/*--------------------------For desktop: */ 
+@media only screen and (min-width: 768px) {
+
+/*login*/
+.header {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    background: #7EA3F1;
+    }
+    
+.header-icon {
+    width: 10%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    }
+}
+
+/*login-register-finish continue btn*/
+.btn#btn-cont {
+    width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*navbar*/
+.navbar-brand {
+    width:220px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+
+.leftcolumn {
+    float: left;
+     width: 600px;
+     margin: 0 auto;
+     padding-top: 20px; 
+
+  }

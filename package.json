@@ -30,5 +30,8 @@
     "eslint-plugin-vue": "^8.0.3",
     "vue-browser-geolocation": "^1.8.0",
     "vue-cli-plugin-webpack-bundle-analyzer": "~4.0.0"
+  },
+  "rules": {
+    "no-unused-vars":"off"
   }
 }
