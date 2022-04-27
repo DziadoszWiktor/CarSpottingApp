@@ -5,8 +5,8 @@ const { defineConfig } = require('@vue/cli-service')
             ? '/CarSpottingApp/'
             : '/',
         pwa: {
-            name: 'gh-pages Vue PWA App deployment ',
-            short_name: 'Vue PWA',
+            name: 'CarSpottingApp',
+            short_name: 'CarSpottingApp',
             themeColor: 'black',
             msTileColor: '#000000',
             appleMobileWebAppCapable: 'yes',
