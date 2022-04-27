@@ -1,4 +1,23 @@
 <template>
+<!--
+
+<div v-for="(post, index) in posts" :key="index">
+      <div  class="border border-primary p-5" style="margin-top:20px;background-color:#a9c2f7;margin-left:10%;margin-right:10%;border-radius:15px;"> 
+
+      <div class="d-flex flex-row">
+        <div class="p-2"><img id="user-icon" src="img/icon-user.png" alt="User icon" width="40" height="40" style="align:left"><br></div>
+        <div class="p-2 align-self-center "><p class="post-user">{{ post.username }}</p></div>
+        <div class="ml-auto p-2">img :id="'pictureFromStorage2'+post.id" class="img-fluid" src="----"><br><br></div>
+      </div>
+
+        <h5 class="post-title">{{ post.post_name }}</h5>
+        <p>{{ post.description }}</p>
+        <p @click="initMap(post.location)">{{ post.location }}</p>
+
+-->
+
+
+
   <div class="home mb-4">
     <h1 style="margin-top:120px" id="test-home">Home Page</h1>
     <h2 id="txtName" ></h2>
@@ -11,7 +30,7 @@
         <h3>{{ post.description }}</h3>
         <h3 @click="initMap(post.location)">{{ post.location }}</h3>
 
-        <img :id="'pictureFromStorage2'+post.id" width="500" height="500" src="----"><br>
+        <img :id="'pictureFromStorage2'+post.id" class="img-fluid" src="----"><br>
 
         <input style="height:50px;width:60%; margin:10px;border-radius:5px;padding:5px;" type="text" :id="'comment'+post.id" placeholder="Write a comment...">
         <button class="btn" style="background-color:#7EA3F1;color:black;height:50px;width:150px;" @click="commentPost(post.id, post.uid, post.post_name)" post.type="button">Comment</button><br>

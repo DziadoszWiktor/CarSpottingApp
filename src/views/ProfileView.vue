@@ -10,9 +10,10 @@
         <h2>{{ post.post_name }} by: {{ post.username }}</h2>
         <h3>{{ post.description }}</h3>
         <h3>{{ post.location }}</h3>
+        <img :id="'pictureFromStorage3'+post.id" class="img-fluid" src="----"><br>
       </div>
     </div>
-  </div>
+</div>
 <!--
 <section class="h-100 gradient-custom-2">
         <div class="row justify-content-center align-items-center ">
@@ -42,6 +43,7 @@
                       <h2>{{ post.post_name }} by: {{ post.username }}</h2>
                       <h3>{{ post.description }}</h3>
                       <h3>{{ post.location }}</h3>
+                      <img :id="'pictureFromStorage3'+post.id" class="img-fluid" src="----"><br>
                     </div>
                   </div>
                 </div>
@@ -53,8 +55,14 @@
 -->
 </template>
 <script>
+/* eslint-disable no-undef */
+/* eslint-disable */
 import { auth } from '../firebase'
 import { db } from '../firebase'
+import router from '../router'
+import { ref as reff } from '../firebase';
+import { storage } from '../firebase';
+import { getDownloadURL } from '../firebase';
 
   export default {
     name: "CommentsView",
@@ -79,13 +87,30 @@ import { db } from '../firebase'
               location: doc.data().location,
               uid: doc.data().uid
             }
-               this.posts.push(Post)
-               //console.log(Post)
-               //console.log(doc.data())
-             }
-          })
-        });
-      }
+            this.posts.push(Post)
+            const username = Post.username;
+            const name = Post.post_name;
+            const desc = Post.description;
+            const id = username+"-"+name+"-"+desc;
+            const post_id = Post.id;
+            console.log(id,post_id);
+            const refImage = reff(storage, 'cars/'+id+'.jpg')
+            getDownloadURL(refImage).then((url)=>{
+              const xhr = new XMLHttpRequest();
+              xhr.responseType = 'data_url';
+              xhr.onload = (event) => {
+                const imgurl = xhr.response;
+              }
+              xhr.open('GET', url)
+              xhr.send();
+              //this.sleep(500);
+              const receivedimg = document.getElementById("pictureFromStorage3"+post_id).src = url;
+              //receivedimg.setAttribute('src',url);
+            })
+          }
+        })
+      });
+    }
       },
     mounted() {
       var user = auth.currentUser;

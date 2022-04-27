@@ -17,7 +17,6 @@
           <router-link class="nav-item nav-link" to="/liked">Liked Posts</router-link>
           <router-link class="nav-item nav-link" to="/comments">Comments</router-link>
           <router-link class="nav-item nav-link" to="/profile">Profile Page</router-link>
-          <router-link class="nav-item nav-link" to="/camera">Camera</router-link>
           <button class="btn btn-primary" style ="margin-left:10px;"  @click="$store.dispatch('logout')">Logout</button>
         </div>
       </div>
