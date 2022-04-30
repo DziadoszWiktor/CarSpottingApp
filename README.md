@@ -30,7 +30,7 @@ npm run build
 ```
 
 ### Deployed site
-### See [**CarSpotting App**](Dziadoszwiktor.github.io/CarSpottingApp).
+### See [**CarSpotting App**](https://Dziadoszwiktor.github.io/CarSpottingApp).
 
 
 
