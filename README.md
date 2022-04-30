@@ -1,6 +1,15 @@
-# csa-auth
+# **Car Spotting App**
 
-## Project setup
+### Aplikacja PWA realizowana w ramach projektu zaliczeniowego przedmiotu "Progamowanie Systemów Mobilnych" 
+<br>
+
+<p align="center">
+  <img src="./UML%20and%20Prototype/img/logoo.png"/>
+</p>
+
+## **Project setup**
+
+## Install dependencies
 ```
 npm install
 ```
@@ -15,10 +24,13 @@ npm run serve
 npm run build
 ```
 
-### Lints and fixes files
+### Deploy and commit site on github
 ```
-npm run lint
+./deploy.sh *commit comment*
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Deployed site
+### See [**CarSpotting App**](Dziadoszwiktor.github.io/CarSpottingApp).
+
+
+
